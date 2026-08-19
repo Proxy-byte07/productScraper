@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -16,14 +15,12 @@
         rel="stylesheet"
         href="{{ url_for('static', filename='style.css') }}"
     >
-
 </head>
 
 
 <body>
 
 <div class="page">
-
 
     <!-- =========================
          NAVIGATION
@@ -63,6 +60,7 @@
     </nav>
 
 
+
     <!-- =========================
          HERO
     ========================== -->
@@ -77,23 +75,18 @@
 
 
             <h1>
-
                 Turn web data into
-
                 <span>
                     structured insights.
                 </span>
-
             </h1>
 
 
             <p>
-
                 Extract product names, prices, and
                 ratings from an online e-commerce
                 source and transform them into a
                 clean, structured dataset.
-
             </p>
 
 
@@ -117,14 +110,13 @@
                     class="secondary-button"
                     download
                 >
-
                     ↓ Download CSV
-
                 </a>
 
             </div>
 
         </div>
+
 
 
         <!-- Preview -->
@@ -229,6 +221,7 @@
     </section>
 
 
+
     <!-- =========================
          MESSAGE
     ========================== -->
@@ -239,12 +232,12 @@
     ></div>
 
 
+
     <!-- =========================
          STATISTICS
     ========================== -->
 
     <section class="stats">
-
 
         <div class="stat-card">
 
@@ -269,6 +262,7 @@
             </div>
 
         </div>
+
 
 
         <div class="stat-card">
@@ -296,6 +290,7 @@
         </div>
 
 
+
         <div class="stat-card">
 
             <div class="stat-icon green">
@@ -320,8 +315,8 @@
 
         </div>
 
-
     </section>
+
 
 
     <!-- =========================
@@ -329,7 +324,6 @@
     ========================== -->
 
     <section class="data-section">
-
 
         <div class="data-header">
 
@@ -379,6 +373,7 @@
             </div>
 
         </div>
+
 
 
         {% if products %}
@@ -530,12 +525,12 @@
     </section>
 
 
+
     <!-- =========================
          PROCESS
     ========================== -->
 
     <section class="process">
-
 
         <div class="process-title">
 
@@ -551,7 +546,6 @@
 
 
         <div class="process-steps">
-
 
             <div class="process-step">
 
@@ -628,10 +622,10 @@
 
             </div>
 
-
         </div>
 
     </section>
+
 
 
     <!-- =========================
@@ -663,12 +657,12 @@
 </div>
 
 
+
 <!-- =========================
      JAVASCRIPT
 ========================== -->
 
 <script>
-
 
 const scrapeButton =
     document.getElementById(
@@ -692,6 +686,7 @@ const searchInput =
     document.getElementById(
         "searchInput"
     );
+
 
 
 /*
@@ -728,18 +723,88 @@ async function runScraper() {
 
     try {
 
+        /*
+            IMPORTANT:
+            Relative URL works both locally
+            and on Render.
+        */
+
         const response =
             await fetch(
                 "/scrape",
                 {
-                    method: "POST"
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
                 }
             );
 
 
-        const data =
-            await response.json();
+        /*
+            Read the raw response first.
+            This allows us to see the real
+            Flask/Render error.
+        */
 
+        const responseText =
+            await response.text();
+
+
+        console.log(
+            "Scraper server response:",
+            responseText
+        );
+
+
+        let data;
+
+
+        /*
+            Try to parse JSON.
+        */
+
+        try {
+
+            data =
+                JSON.parse(
+                    responseText
+                );
+
+        } catch (jsonError) {
+
+            throw new Error(
+                "Server returned HTTP " +
+                response.status +
+                ": " +
+                responseText.substring(
+                    0,
+                    500
+                )
+            );
+
+        }
+
+
+        /*
+            HTTP error
+        */
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.message ||
+                data.error ||
+                "Server returned HTTP " +
+                response.status
+            );
+
+        }
+
+
+        /*
+            Successful scrape
+        */
 
         if (data.success) {
 
@@ -748,7 +813,8 @@ async function runScraper() {
 
 
             message.textContent =
-                data.message;
+                data.message ||
+                "Scraping completed successfully.";
 
 
             setTimeout(
@@ -764,27 +830,40 @@ async function runScraper() {
         } else {
 
             showError(
-                data.message
+                data.message ||
+                data.error ||
+                "Scraping failed."
             );
 
         }
 
-
     } catch (error) {
 
-        showError(
-            "Unable to connect to the scraping server."
+        console.error(
+            "SCRAPER ERROR:",
+            error
         );
 
-        console.error(error);
+
+        /*
+            Show the ACTUAL error
+            instead of the generic
+            connection message.
+        */
+
+        showError(
+            "Scraper error: " +
+            error.message
+        );
 
     }
 
 }
 
 
+
 /*
-    ERROR
+    ERROR HANDLER
 */
 
 function showError(text) {
@@ -817,6 +896,7 @@ function showError(text) {
 }
 
 
+
 /*
     RUN BUTTON
 */
@@ -839,6 +919,7 @@ if (emptyScrapeButton) {
     );
 
 }
+
 
 
 /*
@@ -875,11 +956,13 @@ if (searchInput) {
                         text.includes(query)
                     ) {
 
-                        row.style.display = "";
+                        row.style.display =
+                            "";
 
                     } else {
 
-                        row.style.display = "none";
+                        row.style.display =
+                            "none";
 
                     }
 
@@ -890,7 +973,6 @@ if (searchInput) {
     );
 
 }
-
 
 </script>
 

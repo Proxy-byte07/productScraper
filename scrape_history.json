@@ -1,0 +1,42 @@
+[
+  {
+    "url": "https://quotes.toscrape.com/?utm_source=chatgpt.com",
+    "title": "Quotes to Scrape",
+    "page_type": "web page",
+    "records": 1,
+    "elapsed": 6.1,
+    "scraped_at": "2026-08-19T19:55:52.676567+00:00"
+  },
+  {
+    "url": "https://quotes.toscrape.com/?utm_source=chatgpt.com",
+    "title": "Quotes to Scrape",
+    "page_type": "web page",
+    "records": 1,
+    "elapsed": 6.85,
+    "scraped_at": "2026-08-19T19:55:17.722837+00:00"
+  },
+  {
+    "url": "https://books.toscrape.com/https://books.toscrape.com/",
+    "title": "404 Not Found",
+    "page_type": "web page",
+    "records": 1,
+    "elapsed": 5.37,
+    "scraped_at": "2026-08-19T19:54:44.565525+00:00"
+  },
+  {
+    "url": "https://books.toscrape.com/",
+    "title": "All products | Books to Scrape - Sandbox",
+    "page_type": "e-commerce",
+    "records": 20,
+    "elapsed": 14.09,
+    "scraped_at": "2026-08-19T19:54:13.424726+00:00"
+  },
+  {
+    "url": "https://books.toscrape.com/",
+    "title": "All products | Books to Scrape - Sandbox",
+    "page_type": "article",
+    "records": 20,
+    "elapsed": 15.42,
+    "scraped_at": "2026-08-19T19:44:58.137232+00:00"
+  }
+]

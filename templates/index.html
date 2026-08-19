@@ -1,7 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -9,88 +11,255 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>ProductLens | E-Commerce Scraper</title>
+    <title>
+        ProductLens | Web Data Extraction
+    </title>
 
     <link
         rel="stylesheet"
         href="{{ url_for('static', filename='style.css') }}"
     >
+
 </head>
 
 
 <body>
 
-<div class="page">
 
-    <!-- =========================
-         NAVIGATION
-    ========================== -->
+<div class="app-shell">
 
-    <nav class="navbar">
 
-        <div class="logo">
+    <!-- NAVBAR -->
 
-            <div class="logo-mark">
+    <header class="navbar">
+
+        <a
+            class="brand"
+            href="/"
+        >
+
+            <span class="brand-mark">
                 P
-            </div>
+            </span>
 
-            <div class="logo-text">
+            <span>
 
                 <strong>
                     ProductLens
                 </strong>
 
-                <span>
-                    Web Data Extractor
-                </span>
+                <small>
+                    Web Data Extraction
+                </small>
 
-            </div>
+            </span>
 
-        </div>
+        </a>
 
 
-        <div class="nav-status">
+        <div class="online">
 
-            <span class="status-dot"></span>
+            <span></span>
 
             Scraper Online
 
         </div>
 
-    </nav>
+    </header>
 
 
+    <main>
 
-    <!-- =========================
-         HERO
-    ========================== -->
 
-    <section class="hero">
+        <!-- HERO -->
 
-        <div class="hero-content">
+        <section class="hero">
 
-            <div class="eyebrow">
-                E-COMMERCE DATA EXTRACTION
+
+            <div class="hero-copy">
+
+                <div class="eyebrow">
+                    GENERAL PURPOSE WEB SCRAPER
+                </div>
+
+
+                <h1>
+
+                    Turn public web pages into
+
+                    <span>
+                        structured data.
+                    </span>
+
+                </h1>
+
+
+                <p>
+
+                    Enter a public webpage, choose
+                    the information you need, and
+                    ProductLens extracts it into a
+                    clean dataset.
+
+                </p>
+
+
+                <div class="hero-pills">
+
+                    <span>
+                        Dynamic websites
+                    </span>
+
+                    <span>
+                        Tables
+                    </span>
+
+                    <span>
+                        Products
+                    </span>
+
+                    <span>
+                        Articles
+                    </span>
+
+                    <span>
+                        Jobs
+                    </span>
+
+                </div>
+
             </div>
 
 
-            <h1>
-                Turn web data into
-                <span>
-                    structured insights.
-                </span>
-            </h1>
+            <div class="hero-card">
 
 
-            <p>
-                Extract product names, prices, and
-                ratings from an online e-commerce
-                source and transform them into a
-                clean, structured dataset.
-            </p>
+                <div class="browser-top">
+
+                    <i></i>
+                    <i></i>
+                    <i></i>
+
+                    <span>
+                        EXTRACTION ENGINE
+                    </span>
+
+                </div>
 
 
-            <div class="hero-buttons">
+                <div class="pipeline">
+
+                    <div>
+
+                        <b>
+                            01
+                        </b>
+
+                        <span>
+                            Load webpage
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <b>
+                            02
+                        </b>
+
+                        <span>
+                            Analyze structure
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <b>
+                            03
+                        </b>
+
+                        <span>
+                            Extract fields
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <b>
+                            04
+                        </b>
+
+                        <span>
+                            Export dataset
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- EXTRACTOR -->
+
+        <section class="extractor-card">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="eyebrow">
+                        NEW EXTRACTION
+                    </div>
+
+                    <h2>
+                        Configure your scrape
+                    </h2>
+
+                </div>
+
+
+                <div class="secure-badge">
+
+                    <span>
+                        ✓
+                    </span>
+
+                    Public HTTP/HTTPS only
+
+                </div>
+
+            </div>
+
+
+            <label
+                class="field-label"
+                for="url"
+            >
+
+                Website URL
+
+            </label>
+
+
+            <div class="url-row">
+
+
+                <input
+                    id="url"
+                    type="url"
+                    placeholder="https://books.toscrape.com/"
+                >
+
 
                 <button
                     id="scrapeButton"
@@ -98,558 +267,619 @@
                     type="button"
                 >
 
-                    <span>↻</span>
+                    <span>
+                        ↗
+                    </span>
 
-                    Run Scraper
+                    Start Extraction
 
                 </button>
 
 
-                <a
-                    href="/products.csv"
-                    class="secondary-button"
-                    download
-                >
-                    ↓ Download CSV
-                </a>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- Preview -->
-
-        <div class="preview">
-
-            <div class="preview-header">
-
-                <div class="window-dots">
-
-                    <span></span>
-                    <span></span>
-                    <span></span>
-
-                </div>
-
-                <span>
-                    EXTRACTION STATUS
-                </span>
-
             </div>
 
 
-            <div class="preview-status">
+            <div class="fields-heading">
 
-                <div class="status-icon">
-                    ✓
-                </div>
 
                 <div>
 
-                    <strong>
-                        Ready to scrape
-                    </strong>
+                    <label class="field-label">
+
+                        Fields to extract
+
+                    </label>
 
                     <small>
-                        Source connection active
+
+                        Select the information you want.
+
                     </small>
 
                 </div>
 
-            </div>
 
+                <button
+                    id="selectAll"
+                    class="text-button"
+                    type="button"
+                >
 
-            <div class="preview-fields">
+                    Select all
 
-                <div>
+                </button>
 
-                    <span>
-                        NAME
-                    </span>
-
-                    <strong>
-                        ✓
-                    </strong>
-
-                </div>
-
-
-                <div>
-
-                    <span>
-                        PRICE
-                    </span>
-
-                    <strong>
-                        ✓
-                    </strong>
-
-                </div>
-
-
-                <div>
-
-                    <span>
-                        RATING
-                    </span>
-
-                    <strong>
-                        ✓
-                    </strong>
-
-                </div>
 
             </div>
 
 
-            <div class="preview-source">
-
-                <span>
-                    Source
-                </span>
-
-                <strong>
-                    Scraping Sandbox
-                </strong>
-
-            </div>
-
-        </div>
-
-    </section>
+            <div class="field-grid">
 
 
-
-    <!-- =========================
-         MESSAGE
-    ========================== -->
-
-    <div
-        id="message"
-        class="message"
-    ></div>
+                {% for key, label in field_labels.items() %}
 
 
+                <label class="field-option">
 
-    <!-- =========================
-         STATISTICS
-    ========================== -->
-
-    <section class="stats">
-
-        <div class="stat-card">
-
-            <div class="stat-icon purple">
-                ▦
-            </div>
-
-            <div>
-
-                <span>
-                    PRODUCTS SCRAPED
-                </span>
-
-                <strong>
-                    {{ products|length }}
-                </strong>
-
-                <small>
-                    records currently available
-                </small>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="stat-card">
-
-            <div class="stat-icon blue">
-                ◇
-            </div>
-
-            <div>
-
-                <span>
-                    DATA FIELDS
-                </span>
-
-                <strong>
-                    03
-                </strong>
-
-                <small>
-                    name · price · rating
-                </small>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="stat-card">
-
-            <div class="stat-icon green">
-                ↓
-            </div>
-
-            <div>
-
-                <span>
-                    OUTPUT FORMAT
-                </span>
-
-                <strong>
-                    CSV
-                </strong>
-
-                <small>
-                    structured dataset
-                </small>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         DATA TABLE
-    ========================== -->
-
-    <section class="data-section">
-
-        <div class="data-header">
-
-            <div>
-
-                <div class="section-label">
-                    EXTRACTED DATA
-                </div>
-
-                <h2>
-                    Product Results
-                </h2>
-
-                <p>
-                    Browse the information collected
-                    by the scraper.
-                </p>
-
-            </div>
-
-
-            <div class="data-actions">
-
-                <div class="search-box">
-
-                    <span>
-                        ⌕
-                    </span>
 
                     <input
-                        id="searchInput"
-                        type="text"
-                        placeholder="Search products..."
+                        type="checkbox"
+                        name="field"
+                        value="{{ key }}"
+                        {% if key in default_fields %}
+                        checked
+                        {% endif %}
                     >
 
-                </div>
+
+                    <span class="check"></span>
 
 
-                <a
-                    href="/products.csv"
-                    class="export-button"
-                    download
-                >
-                    ↓ Export CSV
-                </a>
+                    <span>
+                        {{ label }}
+                    </span>
+
+
+                </label>
+
+
+                {% endfor %}
+
 
             </div>
 
-        </div>
+
+            <!-- ADVANCED SELECTORS -->
+
+            <details class="advanced">
 
 
+                <summary>
 
-        {% if products %}
+                    Advanced CSS selectors
 
-        <div class="table-wrapper">
+                    <span>
+                        Optional
+                    </span>
 
-            <table id="productTable">
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            #
-                        </th>
-
-                        <th>
-                            PRODUCT
-                        </th>
-
-                        <th>
-                            PRICE
-                        </th>
-
-                        <th>
-                            RATING
-                        </th>
-
-                    </tr>
-
-                </thead>
+                </summary>
 
 
-                <tbody>
+                <p>
 
-                    {% for product in products %}
+                    If automatic extraction misses a field,
+                    provide a CSS selector.
 
-                    <tr>
+                    Example:
 
-                        <td class="number">
+                    <code>
+                        .product-title
+                    </code>
 
-                            {{
-                                "%02d"
-                                | format(loop.index)
-                            }}
-
-                        </td>
+                </p>
 
 
-                        <td>
-
-                            <div class="product">
-
-                                <div class="product-icon">
-
-                                    {{
-                                        product["Name"][0]
-                                        if product["Name"]
-                                        else "?"
-                                    }}
-
-                                </div>
+                <div class="selector-grid">
 
 
-                                <div>
-
-                                    <strong>
-
-                                        {{
-                                            product["Name"]
-                                        }}
-
-                                    </strong>
-
-                                    <small>
-                                        Product record
-                                    </small>
-
-                                </div>
-
-                            </div>
-
-                        </td>
+                    {% for key, label in field_labels.items() %}
 
 
-                        <td class="price">
+                    <label>
 
-                            {{
-                                product["Price"]
-                            }}
-
-                        </td>
+                        <span>
+                            {{ label }}
+                        </span>
 
 
-                        <td>
+                        <input
+                            class="selector-input"
+                            data-field="{{ key }}"
+                            placeholder=".{{ key }}"
+                        >
 
-                            <span class="rating">
+                    </label>
 
-                                ★
-
-                                {{
-                                    product["Rating"]
-                                }}
-
-                            </span>
-
-                        </td>
-
-                    </tr>
 
                     {% endfor %}
 
-                </tbody>
 
-            </table>
-
-        </div>
+                </div>
 
 
-        {% else %}
-
-        <div class="empty-state">
-
-            <div class="empty-icon">
-                ⌁
-            </div>
-
-            <h3>
-                No product data yet
-            </h3>
-
-            <p>
-                Run the scraper to collect
-                product information.
-            </p>
-
-            <button
-                id="emptyScrapeButton"
-                class="primary-button"
-                type="button"
-            >
-                Start Scraping
-            </button>
-
-        </div>
-
-        {% endif %}
-
-    </section>
+            </details>
 
 
-
-    <!-- =========================
-         PROCESS
-    ========================== -->
-
-    <section class="process">
-
-        <div class="process-title">
-
-            <div class="section-label">
-                HOW IT WORKS
-            </div>
-
-            <h2>
-                From website to dataset.
-            </h2>
-
-        </div>
+            <div
+                id="message"
+                class="message"
+            ></div>
 
 
-        <div class="process-steps">
+        </section>
 
-            <div class="process-step">
+
+        <!-- STATS -->
+
+        <section class="stats-grid">
+
+
+            <div class="stat">
+
+                <small>
+                    RECORDS
+                </small>
+
+                <strong>
+                    {{ records|length }}
+                </strong>
 
                 <span>
-                    01
+                    Latest extraction
                 </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <small>
+                    FIELDS
+                </small>
+
+                <strong>
+                    {{ data.fields|length }}
+                </strong>
+
+                <span>
+                    Selected fields
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <small>
+                    PAGE TYPE
+                </small>
+
+                <strong>
+                    {{ data.page_type or "—" }}
+                </strong>
+
+                <span>
+                    Detected automatically
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <small>
+                    TIME
+                </small>
+
+                <strong>
+
+                    {{ data.elapsed or "—" }}
+
+                    {% if data.elapsed %}
+                        s
+                    {% endif %}
+
+                </strong>
+
+                <span>
+                    Latest extraction
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- RESULTS -->
+
+        <section class="results-section">
+
+
+            <div class="results-header">
+
 
                 <div>
 
-                    <strong>
-                        Connect
-                    </strong>
+                    <div class="eyebrow">
+                        EXTRACTED DATA
+                    </div>
+
+                    <h2>
+                        Results
+                    </h2>
+
+
+                    {% if data.title %}
 
                     <p>
-                        Load the target
-                        e-commerce page.
+
+                        {{ data.title }}
+
+                        {% if data.url %}
+
+                        ·
+
+                        <a
+                            href="{{ data.url }}"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            Source ↗
+                        </a>
+
+                        {% endif %}
+
                     </p>
+
+                    {% else %}
+
+                    <p>
+
+                        Your extracted records
+                        will appear here.
+
+                    </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="result-actions">
+
+
+                    <input
+                        id="searchInput"
+                        type="search"
+                        placeholder="Search results..."
+                    >
+
+
+                    <a
+                        href="/products.csv"
+                        class="download-button"
+                    >
+                        ↓ CSV
+                    </a>
+
+
+                    <a
+                        href="/data.json"
+                        class="download-button secondary"
+                    >
+                        {} JSON
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+            {% if records and columns %}
+
+
+            <div class="table-wrap">
+
+
+                <table id="resultsTable">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                #
+                            </th>
+
+
+                            {% for column in columns %}
+
+                            <th>
+
+                                {{
+                                    field_labels.get(
+                                        column,
+                                        column|replace("_", " ")|title
+                                    )
+                                }}
+
+                            </th>
+
+                            {% endfor %}
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                    {% for record in records %}
+
+
+                    <tr>
+
+
+                        <td class="row-number">
+
+                            {{
+                                "%02d"|format(
+                                    loop.index
+                                )
+                            }}
+
+                        </td>
+
+
+                        {% for column in columns %}
+
+
+                        <td>
+
+
+                            {% set value =
+                                record.get(
+                                    column,
+                                    ""
+                                )
+                            %}
+
+
+                            {% if column == "image"
+                                  and value %}
+
+
+                                <img
+                                    class="result-image"
+                                    src="{{ value }}"
+                                    alt="Result image"
+                                >
+
+
+                            {% elif column == "link"
+                                  and value %}
+
+
+                                <a
+                                    href="{{ value }}"
+                                    target="_blank"
+                                    rel="noopener"
+                                    class="table-link"
+                                >
+
+                                    Open ↗
+
+                                </a>
+
+
+                            {% else %}
+
+
+                                {{ value or "—" }}
+
+
+                            {% endif %}
+
+
+                        </td>
+
+
+                        {% endfor %}
+
+
+                    </tr>
+
+
+                    {% endfor %}
+
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+            {% else %}
+
+
+            <div class="empty-state">
+
+
+                <div class="empty-icon">
+                    ⌁
+                </div>
+
+
+                <h3>
+                    No extraction yet
+                </h3>
+
+
+                <p>
+
+                    Enter a public webpage above
+                    and click Start Extraction.
+
+                </p>
+
+
+            </div>
+
+
+            {% endif %}
+
+
+        </section>
+
+
+        <!-- HISTORY -->
+
+        <section class="history-section">
+
+
+            <div class="results-header">
+
+                <div>
+
+                    <div class="eyebrow">
+                        ACTIVITY
+                    </div>
+
+                    <h2>
+                        Recent extractions
+                    </h2>
 
                 </div>
 
             </div>
 
 
-            <div class="arrow">
-                →
-            </div>
+            {% if history %}
 
 
-            <div class="process-step">
+            <div class="history-list">
 
-                <span>
-                    02
-                </span>
 
-                <div>
+                {% for item in history %}
 
-                    <strong>
-                        Extract
-                    </strong>
 
-                    <p>
-                        Collect product
-                        information.
-                    </p>
+                <div class="history-item">
+
+
+                    <div class="history-icon">
+
+                        {{
+                            item.page_type[:1]|upper
+                        }}
+
+                    </div>
+
+
+                    <div class="history-main">
+
+
+                        <strong>
+
+                            {{ item.title or item.url }}
+
+                        </strong>
+
+
+                        <span>
+
+                            {{ item.url }}
+
+                        </span>
+
+
+                    </div>
+
+
+                    <div class="history-meta">
+
+                        <b>
+                            {{ item.records }}
+                        </b>
+
+                        records
+
+                    </div>
+
+
+                    <div class="history-meta">
+
+                        <b>
+                            {{ item.elapsed }}s
+                        </b>
+
+                        extraction
+
+                    </div>
+
 
                 </div>
 
+
+                {% endfor %}
+
+
             </div>
 
 
-            <div class="arrow">
-                →
-            </div>
+            {% else %}
 
 
-            <div class="process-step">
+            <div class="empty-small">
 
-                <span>
-                    03
-                </span>
-
-                <div>
-
-                    <strong>
-                        Structure
-                    </strong>
-
-                    <p>
-                        Save the results
-                        as CSV.
-                    </p>
-
-                </div>
+                No previous extractions.
 
             </div>
 
-        </div>
 
-    </section>
-
+            {% endif %}
 
 
-    <!-- =========================
-         FOOTER
-    ========================== -->
+        </section>
+
+
+    </main>
+
 
     <footer>
 
-        <div>
 
-            <strong>
-                ProductLens
-            </strong>
-
-            <span>
-                · E-Commerce Product Scraper
-            </span>
-
-        </div>
+        <strong>
+            ProductLens
+        </strong>
 
 
-        <div>
-            Python · Flask · Playwright · Pandas
-        </div>
+        <span>
+            Python · Flask · Playwright · BeautifulSoup
+        </span>
+
+
+        <span>
+            Public web data extraction
+        </span>
+
 
     </footer>
 
@@ -657,324 +887,9 @@
 </div>
 
 
-
-<!-- =========================
-     JAVASCRIPT
-========================== -->
-
-<script>
-
-const scrapeButton =
-    document.getElementById(
-        "scrapeButton"
-    );
-
-
-const emptyScrapeButton =
-    document.getElementById(
-        "emptyScrapeButton"
-    );
-
-
-const message =
-    document.getElementById(
-        "message"
-    );
-
-
-const searchInput =
-    document.getElementById(
-        "searchInput"
-    );
-
-
-
-/*
-    SCRAPE FUNCTION
-*/
-
-async function runScraper() {
-
-    const buttons = [
-        scrapeButton,
-        emptyScrapeButton
-    ].filter(Boolean);
-
-
-    buttons.forEach(
-        button => {
-
-            button.disabled = true;
-
-            button.innerHTML =
-                '<span class="spinner"></span> Scraping...';
-
-        }
-    );
-
-
-    message.className =
-        "message visible";
-
-
-    message.textContent =
-        "Collecting product information. Please wait...";
-
-
-    try {
-
-        /*
-            IMPORTANT:
-            Relative URL works both locally
-            and on Render.
-        */
-
-        const response =
-            await fetch(
-                "/scrape",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                }
-            );
-
-
-        /*
-            Read the raw response first.
-            This allows us to see the real
-            Flask/Render error.
-        */
-
-        const responseText =
-            await response.text();
-
-
-        console.log(
-            "Scraper server response:",
-            responseText
-        );
-
-
-        let data;
-
-
-        /*
-            Try to parse JSON.
-        */
-
-        try {
-
-            data =
-                JSON.parse(
-                    responseText
-                );
-
-        } catch (jsonError) {
-
-            throw new Error(
-                "Server returned HTTP " +
-                response.status +
-                ": " +
-                responseText.substring(
-                    0,
-                    500
-                )
-            );
-
-        }
-
-
-        /*
-            HTTP error
-        */
-
-        if (!response.ok) {
-
-            throw new Error(
-                data.message ||
-                data.error ||
-                "Server returned HTTP " +
-                response.status
-            );
-
-        }
-
-
-        /*
-            Successful scrape
-        */
-
-        if (data.success) {
-
-            message.className =
-                "message success";
-
-
-            message.textContent =
-                data.message ||
-                "Scraping completed successfully.";
-
-
-            setTimeout(
-                () => {
-
-                    window.location.reload();
-
-                },
-                1000
-            );
-
-
-        } else {
-
-            showError(
-                data.message ||
-                data.error ||
-                "Scraping failed."
-            );
-
-        }
-
-    } catch (error) {
-
-        console.error(
-            "SCRAPER ERROR:",
-            error
-        );
-
-
-        /*
-            Show the ACTUAL error
-            instead of the generic
-            connection message.
-        */
-
-        showError(
-            "Scraper error: " +
-            error.message
-        );
-
-    }
-
-}
-
-
-
-/*
-    ERROR HANDLER
-*/
-
-function showError(text) {
-
-    message.className =
-        "message error";
-
-
-    message.textContent =
-        text;
-
-
-    const buttons = [
-        scrapeButton,
-        emptyScrapeButton
-    ].filter(Boolean);
-
-
-    buttons.forEach(
-        button => {
-
-            button.disabled = false;
-
-            button.innerHTML =
-                "↻ Run Scraper";
-
-        }
-    );
-
-}
-
-
-
-/*
-    RUN BUTTON
-*/
-
-if (scrapeButton) {
-
-    scrapeButton.addEventListener(
-        "click",
-        runScraper
-    );
-
-}
-
-
-if (emptyScrapeButton) {
-
-    emptyScrapeButton.addEventListener(
-        "click",
-        runScraper
-    );
-
-}
-
-
-
-/*
-    SEARCH
-*/
-
-if (searchInput) {
-
-    searchInput.addEventListener(
-        "input",
-        function () {
-
-            const query =
-                this.value
-                .toLowerCase()
-                .trim();
-
-
-            const rows =
-                document.querySelectorAll(
-                    "#productTable tbody tr"
-                );
-
-
-            rows.forEach(
-                row => {
-
-                    const text =
-                        row.textContent
-                        .toLowerCase();
-
-
-                    if (
-                        text.includes(query)
-                    ) {
-
-                        row.style.display =
-                            "";
-
-                    } else {
-
-                        row.style.display =
-                            "none";
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
-}
-
-</script>
+<script
+    src="{{ url_for('static', filename='app.js') }}"
+></script>
 
 
 </body>

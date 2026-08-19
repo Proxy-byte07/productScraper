@@ -1,0 +1,21 @@
+services:
+
+  - type: web
+
+    name: productlens-scraper
+
+    runtime: python
+
+    buildCommand: >
+      pip install -r requirements.txt &&
+      PLAYWRIGHT_BROWSERS_PATH=/opt/render/project/src/pw-browsers
+      python -m playwright install chromium
+
+    startCommand: >
+      gunicorn --timeout 120 --workers 1 app:app
+
+    envVars:
+
+      - key: PLAYWRIGHT_BROWSERS_PATH
+
+        value: /opt/render/project/src/pw-browsers

@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ProductLens | E-Commerce Scraper</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<div class="page">
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <div class="logo-mark">
+                P
+            </div>
+
+            <div class="logo-text">
+
+                <strong>
+                    ProductLens
+                </strong>
+
+                <span>
+                    Web Data Extractor
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="nav-status">
+
+            <span class="status-dot"></span>
+
+            Scraper Online
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                E-COMMERCE DATA EXTRACTION
+            </div>
+
+
+            <h1>
+
+                Turn web data into
+
+                <span>
+                    structured insights.
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Extract product names, prices, and
+                ratings from an online e-commerce
+                source and transform them into a
+                clean, structured dataset.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <button
+                    id="scrapeButton"
+                    class="primary-button"
+                    type="button"
+                >
+
+                    <span>↻</span>
+
+                    Run Scraper
+
+                </button>
+
+
+                <a
+                    href="/products.csv"
+                    class="secondary-button"
+                    download
+                >
+
+                    ↓ Download CSV
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Preview -->
+
+        <div class="preview">
+
+            <div class="preview-header">
+
+                <div class="window-dots">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+                <span>
+                    EXTRACTION STATUS
+                </span>
+
+            </div>
+
+
+            <div class="preview-status">
+
+                <div class="status-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <strong>
+                        Ready to scrape
+                    </strong>
+
+                    <small>
+                        Source connection active
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="preview-fields">
+
+                <div>
+
+                    <span>
+                        NAME
+                    </span>
+
+                    <strong>
+                        ✓
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        PRICE
+                    </span>
+
+                    <strong>
+                        ✓
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        RATING
+                    </span>
+
+                    <strong>
+                        ✓
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="preview-source">
+
+                <span>
+                    Source
+                </span>
+
+                <strong>
+                    Scraping Sandbox
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MESSAGE
+    ========================== -->
+
+    <div
+        id="message"
+        class="message"
+    ></div>
+
+
+    <!-- =========================
+         STATISTICS
+    ========================== -->
+
+    <section class="stats">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon purple">
+                ▦
+            </div>
+
+            <div>
+
+                <span>
+                    PRODUCTS SCRAPED
+                </span>
+
+                <strong>
+                    {{ products|length }}
+                </strong>
+
+                <small>
+                    records currently available
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon blue">
+                ◇
+            </div>
+
+            <div>
+
+                <span>
+                    DATA FIELDS
+                </span>
+
+                <strong>
+                    03
+                </strong>
+
+                <small>
+                    name · price · rating
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon green">
+                ↓
+            </div>
+
+            <div>
+
+                <span>
+                    OUTPUT FORMAT
+                </span>
+
+                <strong>
+                    CSV
+                </strong>
+
+                <small>
+                    structured dataset
+                </small>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =========================
+         DATA TABLE
+    ========================== -->
+
+    <section class="data-section">
+
+
+        <div class="data-header">
+
+            <div>
+
+                <div class="section-label">
+                    EXTRACTED DATA
+                </div>
+
+                <h2>
+                    Product Results
+                </h2>
+
+                <p>
+                    Browse the information collected
+                    by the scraper.
+                </p>
+
+            </div>
+
+
+            <div class="data-actions">
+
+                <div class="search-box">
+
+                    <span>
+                        ⌕
+                    </span>
+
+                    <input
+                        id="searchInput"
+                        type="text"
+                        placeholder="Search products..."
+                    >
+
+                </div>
+
+
+                <a
+                    href="/products.csv"
+                    class="export-button"
+                    download
+                >
+                    ↓ Export CSV
+                </a>
+
+            </div>
+
+        </div>
+
+
+        {% if products %}
+
+        <div class="table-wrapper">
+
+            <table id="productTable">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            #
+                        </th>
+
+                        <th>
+                            PRODUCT
+                        </th>
+
+                        <th>
+                            PRICE
+                        </th>
+
+                        <th>
+                            RATING
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for product in products %}
+
+                    <tr>
+
+                        <td class="number">
+
+                            {{
+                                "%02d"
+                                | format(loop.index)
+                            }}
+
+                        </td>
+
+
+                        <td>
+
+                            <div class="product">
+
+                                <div class="product-icon">
+
+                                    {{
+                                        product["Name"][0]
+                                        if product["Name"]
+                                        else "?"
+                                    }}
+
+                                </div>
+
+
+                                <div>
+
+                                    <strong>
+
+                                        {{
+                                            product["Name"]
+                                        }}
+
+                                    </strong>
+
+                                    <small>
+                                        Product record
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <td class="price">
+
+                            {{
+                                product["Price"]
+                            }}
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="rating">
+
+                                ★
+
+                                {{
+                                    product["Rating"]
+                                }}
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        {% else %}
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                ⌁
+            </div>
+
+            <h3>
+                No product data yet
+            </h3>
+
+            <p>
+                Run the scraper to collect
+                product information.
+            </p>
+
+            <button
+                id="emptyScrapeButton"
+                class="primary-button"
+                type="button"
+            >
+                Start Scraping
+            </button>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- =========================
+         PROCESS
+    ========================== -->
+
+    <section class="process">
+
+
+        <div class="process-title">
+
+            <div class="section-label">
+                HOW IT WORKS
+            </div>
+
+            <h2>
+                From website to dataset.
+            </h2>
+
+        </div>
+
+
+        <div class="process-steps">
+
+
+            <div class="process-step">
+
+                <span>
+                    01
+                </span>
+
+                <div>
+
+                    <strong>
+                        Connect
+                    </strong>
+
+                    <p>
+                        Load the target
+                        e-commerce page.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="arrow">
+                →
+            </div>
+
+
+            <div class="process-step">
+
+                <span>
+                    02
+                </span>
+
+                <div>
+
+                    <strong>
+                        Extract
+                    </strong>
+
+                    <p>
+                        Collect product
+                        information.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="arrow">
+                →
+            </div>
+
+
+            <div class="process-step">
+
+                <span>
+                    03
+                </span>
+
+                <div>
+
+                    <strong>
+                        Structure
+                    </strong>
+
+                    <p>
+                        Save the results
+                        as CSV.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div>
+
+            <strong>
+                ProductLens
+            </strong>
+
+            <span>
+                · E-Commerce Product Scraper
+            </span>
+
+        </div>
+
+
+        <div>
+            Python · Flask · Playwright · Pandas
+        </div>
+
+    </footer>
+
+
+</div>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script>
+
+
+const scrapeButton =
+    document.getElementById(
+        "scrapeButton"
+    );
+
+
+const emptyScrapeButton =
+    document.getElementById(
+        "emptyScrapeButton"
+    );
+
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+
+/*
+    SCRAPE FUNCTION
+*/
+
+async function runScraper() {
+
+    const buttons = [
+        scrapeButton,
+        emptyScrapeButton
+    ].filter(Boolean);
+
+
+    buttons.forEach(
+        button => {
+
+            button.disabled = true;
+
+            button.innerHTML =
+                '<span class="spinner"></span> Scraping...';
+
+        }
+    );
+
+
+    message.className =
+        "message visible";
+
+
+    message.textContent =
+        "Collecting product information. Please wait...";
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/scrape",
+                {
+                    method: "POST"
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (data.success) {
+
+            message.className =
+                "message success";
+
+
+            message.textContent =
+                data.message;
+
+
+            setTimeout(
+                () => {
+
+                    window.location.reload();
+
+                },
+                1000
+            );
+
+
+        } else {
+
+            showError(
+                data.message
+            );
+
+        }
+
+
+    } catch (error) {
+
+        showError(
+            "Unable to connect to the scraping server."
+        );
+
+        console.error(error);
+
+    }
+
+}
+
+
+/*
+    ERROR
+*/
+
+function showError(text) {
+
+    message.className =
+        "message error";
+
+
+    message.textContent =
+        text;
+
+
+    const buttons = [
+        scrapeButton,
+        emptyScrapeButton
+    ].filter(Boolean);
+
+
+    buttons.forEach(
+        button => {
+
+            button.disabled = false;
+
+            button.innerHTML =
+                "↻ Run Scraper";
+
+        }
+    );
+
+}
+
+
+/*
+    RUN BUTTON
+*/
+
+if (scrapeButton) {
+
+    scrapeButton.addEventListener(
+        "click",
+        runScraper
+    );
+
+}
+
+
+if (emptyScrapeButton) {
+
+    emptyScrapeButton.addEventListener(
+        "click",
+        runScraper
+    );
+
+}
+
+
+/*
+    SEARCH
+*/
+
+if (searchInput) {
+
+    searchInput.addEventListener(
+        "input",
+        function () {
+
+            const query =
+                this.value
+                .toLowerCase()
+                .trim();
+
+
+            const rows =
+                document.querySelectorAll(
+                    "#productTable tbody tr"
+                );
+
+
+            rows.forEach(
+                row => {
+
+                    const text =
+                        row.textContent
+                        .toLowerCase();
+
+
+                    if (
+                        text.includes(query)
+                    ) {
+
+                        row.style.display = "";
+
+                    } else {
+
+                        row.style.display = "none";
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
